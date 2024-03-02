@@ -12,13 +12,13 @@ export class ProposifyLogin {
 
   // Method to enter the username in the email text field
   async EnterUserName(email) {
-    await this.page.waitForSelector(this.emailTextField);
+    await this.page.waitForSelector("#pyLoginEmail");
     await this.emailTextField.fill(email);
   }
 
   // Method to enter the password in the password field
   async EnterPassword(password) {
-    await this.page.waitForSelector(this.passwordField);
+    await this.page.waitForSelector("#pyLoginPassword");
     await this.passwordField.fill(password);
   }
 
