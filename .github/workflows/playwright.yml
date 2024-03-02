@@ -22,7 +22,10 @@ jobs:
         touch .env
         echo "${{ secrets.PROPOSIFYPLAYWRIGHTENVIRONMENTFILE }}" > .env
     - name: Run Playwright tests
-      run: npx playwright test
+      run: |
+        npx playwright test test --browser=chromium
+        npx playwright test test --browser=firefox
+        npx playwright test test --browser=webkit
     - uses: actions/upload-artifact@v3
       if: always()
       with:
