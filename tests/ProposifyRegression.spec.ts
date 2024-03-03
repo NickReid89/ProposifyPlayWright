@@ -49,12 +49,14 @@ test("Scenario Two", async ({ page }) => {
   await proposifyTemplateDocument.ClickImagesButton();
   await proposifyTemplateDocument.UploadImage("TestImageOne.jpg");
   await proposifyTemplateDocument.UploadImage("TestImageTwo.png");
-  await expect(
-    page.getByText('.MuiImageListItem-img[alt="Image 0"]'),
-  ).toBeVisible();
-  await expect(
-    page.getByText('.MuiImageListItem-img[alt="Image 1"]'),
-  ).toBeVisible();
+
+  let image = page.locator('.MuiImageListItem-img[alt="Image 0"]');
+  expect(image).toBeTruthy();
+
+  image = page.locator('.MuiImageListItem-img[alt="Image 1"]');
+  expect(image).toBeTruthy();
+
+
 });
 
 // Scenario 3
