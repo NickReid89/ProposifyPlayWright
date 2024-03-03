@@ -31,9 +31,13 @@ jobs:
           # Details: https://github.com/microsoft/playwright/issues/6500#issuecomment-838515115
           HOME: /root
         run: |
+          # Sleep added only to avoid DDOS trigger.
           npx playwright test --project=chromium
+          sleep 2m
           npx playwright test --project=firefox
+          sleep 2m
           npx playwright test --project=webkit
+          sleep 2m
           npx playwright test --project=edge
       - uses: actions/upload-artifact@v3
         if: always()
