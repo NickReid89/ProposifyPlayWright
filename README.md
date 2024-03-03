@@ -9,6 +9,6 @@ To run the tests follow the following steps:
 3) Pull down this PlayWright repo.
 4) In the PlayWright repo look for *.env.dist* and rename it to *.env* inside of the file fill in the username and password of the test user.
 5) Look for playwright.config.js in the project and comment out any browsers you don't intend to test and run the command *npx playwright test*
-6) Alternatively run the command *npx playwright test --project=<projectname>*
+6) Alternatively run the command *npx playwright test --project=projectname*
 7) ensure only one browser is running at a type or you may find test collisions from using the same account.
 8) success!
