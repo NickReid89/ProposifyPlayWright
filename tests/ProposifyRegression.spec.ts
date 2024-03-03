@@ -1,8 +1,8 @@
 // @ts-check
-import { test } from '@playwright/test';
-import { beforeEachTest } from '../hooks';
-import { ProposifyHomePage } from '../POM/homePage';
-import { ProposifyTemplateDocument } from '../POM/templateSettings';
+import { test, expect } from "@playwright/test";
+import { beforeEachTest } from "../hooks";
+import { ProposifyHomePage } from "../POM/homePage";
+import { ProposifyTemplateDocument } from "../POM/templateSettings";
 
 // Log in with Test User.
 test.beforeEach(beforeEachTest);
@@ -15,51 +15,60 @@ test.beforeEach(beforeEachTest);
 // The returned document contains the status Draft.
 // Navigate to trash
 // Empty the trash
-test('Scenario One', async ({ page }) => {
-    const proposifyHomePage = new ProposifyHomePage(page);
-    await proposifyHomePage.ClickNewProposal();
-
-    const proposifyTemplateDocument = new ProposifyTemplateDocument(page);
-    await proposifyTemplateDocument.verifyElementExists('#editor-toolbar-container');
-    await proposifyTemplateDocument.VerifyStatusOfDocument('DRAFT');
-    await proposifyTemplateDocument.ClickProposifyLogo();
-    await proposifyHomePage.SelectFilterByValue('Draft');
-    await proposifyHomePage.CheckIfTemplateExists();
-    await proposifyHomePage.SendFirstTemplateToTrash();
-    await proposifyHomePage.SelectTrashButton();
-    await proposifyHomePage.EmptyAllTrash();
-    await proposifyHomePage.ConfirmEmptyTrashButton();
+test("Scenario One", async ({ page }) => {
+  const proposifyHomePage = new ProposifyHomePage(page);
+  await proposifyHomePage.ClickNewProposal();
+  const proposifyTemplateDocument = new ProposifyTemplateDocument(page);
+  await proposifyTemplateDocument.verifyElementExists(
+    "#editor-toolbar-container",
+  );
+  await proposifyTemplateDocument.VerifyStatusOfDocument("DRAFT");
+  await proposifyTemplateDocument.ClickProposifyLogo();
+  await proposifyHomePage.SelectFilterByValue("Draft");
+  await proposifyHomePage.CheckIfTemplateExists();
+  await proposifyHomePage.SendFirstTemplateToTrash();
+  await proposifyHomePage.SelectTrashButton();
+  await proposifyHomePage.EmptyAllTrash();
+  await proposifyHomePage.ConfirmEmptyTrashButton();
 });
 
 // Scenario 2
-
 //     Click on New Document
 //     Click on content tab
 //     Click on Image Block
 //     Upload two images
-test('Scenario Two', async ({ page }) => {
-    const proposifyHomePage = new ProposifyHomePage(page);
-    await proposifyHomePage.ClickNewProposal();
+test("Scenario Two", async ({ page }) => {
+  const proposifyHomePage = new ProposifyHomePage(page);
+  await proposifyHomePage.ClickNewProposal();
 
-    const proposifyTemplateDocument = new ProposifyTemplateDocument(page);
-    await proposifyTemplateDocument.verifyElementExists('#editor-toolbar-container');
-    await proposifyTemplateDocument.ClickContentButton();
-    await proposifyTemplateDocument.ClickImagesButton();
-    await proposifyTemplateDocument.ClickAddImagesButton();
+  const proposifyTemplateDocument = new ProposifyTemplateDocument(page);
+  await proposifyTemplateDocument.verifyElementExists(
+    "#editor-toolbar-container",
+  );
+  await proposifyTemplateDocument.ClickContentButton();
+  await proposifyTemplateDocument.ClickImagesButton();
+  await proposifyTemplateDocument.UploadImage("TestImageOne.jpg");
+  await proposifyTemplateDocument.UploadImage("TestImageTwo.png");
+  await expect(
+    page.getByText('.MuiImageListItem-img[alt="Image 0"]'),
+  ).toBeVisible();
+  await expect(
+    page.getByText('.MuiImageListItem-img[alt="Image 1"]'),
+  ).toBeVisible();
 });
 
 // Scenario 3
-
 //     Click on New Document
 //     Click on Signatures Tab
 //     Drag Signature block to the right edge of the document
 
-test('Scenario Three', async ({ page }) => {
-    const proposifyHomePage = new ProposifyHomePage(page);
-    await proposifyHomePage.ClickNewProposal();
-
-    const proposifyTemplateDocument = new ProposifyTemplateDocument(page);
-    await proposifyTemplateDocument.verifyElementExists('#editor-toolbar-container');
-    await proposifyTemplateDocument.ClickAddSignaturesButton();
-    await proposifyTemplateDocument.DragSignatureButtonTo();
+test("Scenario Three", async ({ page }) => {
+  const proposifyHomePage = new ProposifyHomePage(page);
+  await proposifyHomePage.ClickNewProposal();
+  const proposifyTemplateDocument = new ProposifyTemplateDocument(page);
+  await proposifyTemplateDocument.verifyElementExists(
+    "#editor-toolbar-container",
+  );
+  await proposifyTemplateDocument.ClickAddSignaturesButton();
+  await proposifyTemplateDocument.DragSignatureButtonTo();
 });

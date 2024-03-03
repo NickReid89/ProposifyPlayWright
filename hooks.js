@@ -1,6 +1,6 @@
 const { ProposifyLogin } = require("./POM/login"); // Importing the ProposifyLogin class from the login module
 const { ProposifyHomePage } = require("./POM/homePage"); // Importing the ProposifyHomePage class from the homePage module
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 
 // Read from default ".env" file.
 dotenv.config();
