@@ -49,7 +49,7 @@ module.exports = defineConfig({
     },
 
     {
-      name: 'Microsoft Edge',
+      name: 'Edge',
       use: { ...devices['Desktop Edge'], channel: 'msedge' },
     }
   ],

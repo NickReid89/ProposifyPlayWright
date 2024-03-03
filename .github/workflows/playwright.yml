@@ -20,9 +20,10 @@ jobs:
           echo "${{ secrets.PROPOSIFYPLAYWRIGHTENVIRONMENTFILE }}" > .env
       - name: Run Playwright tests
         run: |
-          npx playwright test test --browser=chromium
-          npx playwright test test --browser=firefox
-          npx playwright test test --browser=webkit
+          npx playwright test test --project=chromium
+          npx playwright test test --oroject=firefox
+          npx playwright test test --project=webkit
+          npx playwright test test --project=edge
       - uses: actions/upload-artifact@v3
         if: always()
         with:
