@@ -8,5 +8,5 @@ To run the tests follow the following steps:
 2) Download and install PlayWright here: https://playwright.dev/docs/intro.
 3) Pull down this PlayWright repo.
 4) Look for playwright.config.js in the project and comment out any browsers you don't intend to test.
-5) Run the command "npm test"
+5) Run the command "npm playwright test"
 6) success!
