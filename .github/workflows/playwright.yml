@@ -15,7 +15,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: |
+          npx playwright install --with-deps
+          # Edge isn't included and needs to be installed seperately.
+          npx playwright install msedge
       - name: Update Environment File
         run: |
           touch .env
