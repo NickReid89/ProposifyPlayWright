@@ -29,10 +29,10 @@ jobs:
           # Details: https://github.com/microsoft/playwright/issues/6500#issuecomment-838515115
           HOME: /root
         run: |
-          npx playwright test test --project=chromium
-          npx playwright test test --project=firefox
-          npx playwright test test --project=webkit
-          npx playwright test test --project=edge
+          npx playwright test --project=chromium
+          npx playwright test --project=firefox
+          npx playwright test --project=webkit
+          npx playwright test --project=edge
       - uses: actions/upload-artifact@v3
         if: always()
         with:
