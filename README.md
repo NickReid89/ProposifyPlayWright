@@ -1,5 +1,5 @@
 # PlayWright Test Proposify
-This repo manages PlayWright tests to test against https://app.proposify.com .It does this through the utilization of PlayWright that was wrote using JS. 
+This repo manages PlayWright tests to test against https://app.proposify.com. It does this with the utilization of PlayWright that was wrote using JS. 
 
 ## Installation
 
