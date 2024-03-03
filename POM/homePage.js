@@ -6,7 +6,7 @@ export class ProposifyHomePage {
    * @param {import('@playwright/test').Page} page
    */
   constructor(page) {
-    this.page = page; // The page object from Playwright
+    this.page = page; 
     this.proposifyLogo = page.locator(
       'a[href="https://gmail-235190.fe.proposify.com/pipeline"]',
     ); // Locator for the Proposify logo
@@ -17,12 +17,10 @@ export class ProposifyHomePage {
     this.emptyAllTrashButton = page.locator(".snackbar-btn"); // Locator for the Empty All Trash button
   }
 
-  // Method to click on the Proposify logo
   async ClickProposifyLogo() {
     await this.proposifyLogo.click();
   }
 
-  // Method to click on the New Proposal button
   async ClickNewProposal() {
     await this.newProposalButton.click();
   }
@@ -32,23 +30,21 @@ export class ProposifyHomePage {
     await this.page.click(`button[value="${value}"]`);
   }
 
-  // Method to check if a template exists
+  // Method to check if at least one template draft exists.
   async CheckIfTemplateExists() {
     const element = this.page.locator(".ant-list-items > a:first-child");
     expect(element).toBeTruthy();
   }
 
-  // Method to select the Trash button
   async SelectTrashButton() {
     await this.trashButton.click();
   }
 
-  // Method to click on the Empty All Trash button
   async EmptyAllTrash() {
     await this.emptyAllTrashButton.click();
   }
 
-  // Method to confirm the action of emptying the trash
+  // Clicks yes button in confirmation modal.
   async ConfirmEmptyTrashButton() {
     const elements = await this.page.$$('button[data-testid="buttonBase"]');
     await elements[3].click(); // Array indices start at 0, so index 3 is the fourth element

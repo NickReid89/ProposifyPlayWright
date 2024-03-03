@@ -6,7 +6,7 @@ export class ProposifyTemplateDocument {
    * @param {import('@playwright/test').Page} page
    */
   constructor(page) {
-    this.page = page; // The page object from Playwright
+    this.page = page; 
     this.proposifyLogo = page.locator('.ant-menu-item[title="Documents List"]'); // Locator for the Proposify logo
   }
 
@@ -15,12 +15,10 @@ export class ProposifyTemplateDocument {
     expect(this.page.locator(selector)).toBeTruthy();
   }
 
-  // Method to click on the Proposify logo
   async ClickProposifyLogo() {
     await this.proposifyLogo.click();
   }
 
-  // Method to verify the status of a document
   async VerifyStatusOfDocument(status) {
     // Get the text content of the child element
     const actualText = await this.page
@@ -53,6 +51,7 @@ export class ProposifyTemplateDocument {
     await this.page.locator("#rc-tabs-1-tab-signatures_tab").click();
   }
 
+  // Drags Signature button to the right of the background element.
   async DragSignatureButtonTo() {
     const box = await this.page.locator(".file-drop-background").boundingBox();
     await this.page.locator(".signature_button.user_color.sunset").hover();
