@@ -18,7 +18,9 @@ jobs:
         run: |
           npx playwright install --with-deps
           # Edge isn't included and needs to be installed seperately.
-          npx playwright install msedge
+          npx playwright install 
+      - name: Install Reporting Tool
+        run: npm install @estruyf/github-actions-reporter
       - name: Update Environment File
         run: |
           touch .env
